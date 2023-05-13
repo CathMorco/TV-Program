@@ -15,21 +15,39 @@ class TV:
 
     #Function that displays/returns the channel on the TV object
     def getChannel(self,channel):
+        self.channel = channel
         return channel
 
     #Function that changes the channel on the TV object
     def setChannel(self,channel):
-        if self.on and 1 <= channel <= 120:
-            self.channel = channel
+        try:
+            if self.on and 1 <= channel <= 120:
+                self.channel = channel
+
+            else:
+                raise OverflowError("ERROR: You must only choose between the numbers 1-120")
+        except TypeError:
+            print("ERROR: Please input an integer")
+        except OverflowError as e:
+            print(e)
 
     #Function that displays/returns the volume on the TV object
     def getVolume(self,volume):
+        self.volume = volume
         return volume
 
     #Function that changes the volulme on the TV object  
     def setVolume(self,volume):
-        if self.on and 1 <= volume <= 7:
-            self.volume = volume
+        try:
+            if self.on and 1 <= volume <= 7:
+                self.volume = volume
+
+            else:
+                raise OverflowError("ERROR: You must only choose between the numbers 1-7")
+        except TypeError:
+            print("ERROR: Please input an integer")
+        except OverflowError as e:
+            print(e)
 
     #Function that increases the channel on the TV object by 1
     def channelUp(self):
