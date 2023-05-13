@@ -1,3 +1,8 @@
+# importing libraries
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+import sys
 from PyQt5.QtWidgets import QComboBox, QLabel, QApplication, QWidget, QVBoxLayout
 import sys
 
@@ -81,19 +86,34 @@ class TVWidget(QWidget):
         for channel in range(1, 121):
             self.channel_combo.addItem(str(channel))
         self.channel_combo.setCurrentIndex(self.tv.getChannel() - 1)
-        self.channel_combo.currentIndexChanged.connect(self.changeChannel)
+        self.channel_combo.currentIndexChanged.connect(self.setChannel)
+
+        self.volume_label = QLabel(f"Current Volume: {self.tv.getVolume()}")
+        self.volume_combo = QComboBox()
+        for volume in range(1, 8):
+            self.volume_combo.addItem(str(volume))
+        self.volume_combo.setCurrentIndex(self.tv.getVolume() - 1)
+        self.volume_combo.currentIndexChanged.connect(self.setVolume)
+
+
 
         vbox = QVBoxLayout()
         vbox.addWidget(self.channel_label)
         vbox.addWidget(self.channel_combo)
+        vbox.addWidget(self.volume_label)
+        vbox.addWidget(self.volume_combo)
         self.setLayout(vbox)
 
         self.setWindowTitle('TV Widget')
         self.show()
 
-    def changeChannel(self, index):
-        self.tv.setChannel(index+1)
-        self.channel_label.setText(f"Current Channel: {self.tv.getChannel()}")
+    def setChannel(self, index):
+        channel1 = int(self.channel_combo.currentText())
+        self.channel_label.setText("Current Channel: {}".format(channel1))
+
+    def setVolume(self):
+        volume1 = int(self.volume_combo.currentText())
+        self.volume_label.setText("Current Volume: {}".format(volume1))
 
 
 if __name__ == '__main__':
