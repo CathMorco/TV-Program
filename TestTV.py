@@ -14,4 +14,8 @@ class TestTv:
         tv2.setVolume(Volumenum2)
         print("tv2's channel is", tv2.getChannel(), "and volume level is", tv2.getVolume())      
 
-TestTv.main(30,3,3,2)
+num1= int(input("From 1-120, what channel would you like for tv1?:"))
+num2= int(input("From 1-7, what volume level would you like for tv1?:"))
+num3= int(input("From 1-120, what channel would you like for tv2?:"))
+num4= int(input("From 1-7, what volume level would you like for tv2?:"))
+TestTv.main(num1,num2,num3,num4)

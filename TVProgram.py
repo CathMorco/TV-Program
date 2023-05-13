@@ -30,7 +30,7 @@ class TV:
     #Function that changes the volulme on the TV object  
     def setVolume(self,volume):
         if self.on and 1 <= volume <= 7:
-            self.volume = volume
+            self.volumeLevel = volume
         else:
             print ("ERROR: You must only choose between the numbers 1-7")
 
