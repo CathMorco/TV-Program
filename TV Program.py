@@ -1,30 +1,5 @@
-from PyQt5.QtWidgets import QComboBox, QMainWindow, QApplication, QWidget, QVBoxLayout
+from PyQt5.QtWidgets import QComboBox, QLabel, QApplication, QWidget, QVBoxLayout
 import sys
-
-
-class MainWindow(QMainWindow):
-
-    def __init__(self):
-        super().__init__()
-
-        combobox1 = QComboBox()
-        combobox1.addItems([str(e) for e in range(1, 121)])
-        layout = QVBoxLayout()
-        layout.addWidget(combobox1)
-
-        container = QWidget()
-        container.setLayout(layout)
-
-        self.setCentralWidget(container)
-
-    def current_text_changed(self, s):
-        print("Current text: ", s)
-
-
-app = QApplication(sys.argv)
-w = MainWindow()
-w.show()
-app.exec_()
 
 
 class TV:
@@ -50,8 +25,7 @@ class TV:
     def setChannel(self,channel):
         if self.on and 1 <= channel <= 120:
             self.channel = channel
-        else:
-            print ("ERROR: You must only choose between the numbers 1-120")
+
     #Function that displays/returns the volume on the TV object
     def getVolume(self):
         return self.volumeLevel
@@ -60,8 +34,6 @@ class TV:
     def setVolume(self,volume):
         if self.on and 1 <= volume <= 7:
             self.volume = volume
-        else:
-            print ("ERROR: You must only choose between the numbers 1-7")
 
     #Function that increases the channel on the TV object by 1
     def channelUp(self):
@@ -97,4 +69,34 @@ class TestTv:
         tv2.setVolume(2)
         print("tv2's channel is", tv2.getChannel(), "and volume level is", tv2.getVolume())      
 
-TestTv.main()
+class TVWidget(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.tv = TV()
+        self.initUI()
+
+    def initUI(self):
+        self.channel_label = QLabel(f"Current Channel: {self.tv.getChannel()}")
+        self.channel_combo = QComboBox()
+        for channel in range(1, 121):
+            self.channel_combo.addItem(str(channel))
+        self.channel_combo.setCurrentIndex(self.tv.getChannel() - 1)
+        self.channel_combo.currentIndexChanged.connect(self.changeChannel)
+
+        vbox = QVBoxLayout()
+        vbox.addWidget(self.channel_label)
+        vbox.addWidget(self.channel_combo)
+        self.setLayout(vbox)
+
+        self.setWindowTitle('TV Widget')
+        self.show()
+
+    def changeChannel(self, index):
+        self.tv.setChannel(index+1)
+        self.channel_label.setText(f"Current Channel: {self.tv.getChannel()}")
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    tv_widget = TVWidget()
+    sys.exit(app.exec_())
