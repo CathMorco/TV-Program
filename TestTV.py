@@ -1,11 +1,11 @@
-from TestProgram import TV
+from TVProgram import TV
 
 class TestTv:
     def main():
         tv1 = TV()
         tv1.turnOn()
-        tv1.setChannel(1000)
-        tv1.setVolume(1000)
+        tv1.setChannel(30)
+        tv1.setVolume(3)
         print("tv1's channel is", tv1.getChannel(), "and volume level is", tv1.getVolume())
         
         tv2 = TV()
