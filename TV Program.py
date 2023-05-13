@@ -104,37 +104,70 @@ class TestTV:
         self.tv_widget.volume_label2.setText("And volume level is {}".format(volume2))
 
 
+    def channel_up(self):
+        self.tv.channelUp()
+        channel = int(self.tv_widget.channel_combo2.currentText())
+
+    def channel_down(self):
+        self.tv.channelDown()
+        channel = int(self.tv_widget.channel_combo2.currentText())
+
+    def volume_up2(self):
+        self.tv.channelUp()
+        channel = int(self.tv_widget.channel_combo2.currentText())
+
+    def volume_down2(self):
+        self.tv.channelDown()
+        channel = int(self.tv_widget.channel_combo2.currentText())
+
+#Class for the GUI Widgets
 class TVWidget(QWidget):
+    #Initializes instances
     def __init__(self):
         super().__init__()
         self.tv = TV()
         self.initUI()
 
+    #Assigns attributes for the widgets/GUI
     def initUI(self):
+        # Create's the channel combobox for tv1
         self.channel_label = QLabel(f"Current Channel: {self.tv.getChannel()}")
         self.channel_combo = QComboBox()
         for channel in range(1, 121):
             self.channel_combo.addItem(str(channel))
         self.channel_combo.setCurrentIndex(self.tv.getChannel() - 1)
 
+        # Create's the volume combobox for tv1
         self.volume_label = QLabel(f"Current Volume: {self.tv.getVolume()}")
         self.volume_combo = QComboBox()
         for volume in range(1, 8):
             self.volume_combo.addItem(str(volume))
         self.volume_combo.setCurrentIndex(self.tv.getVolume() - 1)
 
+        # Create's the channel combobox for tv2 
         self.channel_label2 = QLabel(f"Current Channel: {self.tv.getChannel()}")
         self.channel_combo2 = QComboBox()
         for channel2 in range(1, 121):
             self.channel_combo2.addItem(str(channel2))
         self.channel_combo2.setCurrentIndex(self.tv.getChannel() - 1)
 
+        # Create's the volume combobox for tv2
         self.volume_label2 = QLabel(f"Current Volume: {self.tv.getVolume()}")
         self.volume_combo2 = QComboBox()
         for volume2 in range(1, 8):
             self.volume_combo2.addItem(str(volume2))
         self.volume_combo2.setCurrentIndex(self.tv.getVolume() - 1)
 
+        # create buttons for channel and volume
+        self.channel_up_button = QPushButton("Channel Up")
+        self.channel_down_button = QPushButton("Channel Down")
+        self.volume_up_button = QPushButton("Volume Up")
+        self.volume_down_button = QPushButton("Volume Down")
+
+
+
+
+        # create vertical layout for labels, combos, and buttons
         vbox = QVBoxLayout()
         vbox.addWidget(self.channel_label)
         vbox.addWidget(self.channel_combo)
@@ -144,6 +177,10 @@ class TVWidget(QWidget):
         vbox.addWidget(self.channel_combo2)
         vbox.addWidget(self.volume_label2)
         vbox.addWidget(self.volume_combo2)
+        vbox.addWidget(self.channel_up_button)
+        vbox.addWidget(self.channel_down_button)
+        vbox.addWidget(self.volume_up_button)
+        vbox.addWidget(self.volume_down_button)
         self.setLayout(vbox)
 
         self.tv_test = TestTV(self)
