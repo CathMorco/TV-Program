@@ -19,31 +19,20 @@ class TV:
 
     #Function that changes the channel on the TV object
     def setChannel(self,channel):
-        try:
-            if self.on and 1 <= channel <= 120:
-                self.channel=channel
-                return self.channel
-
-        except TypeError:
-            print("ERROR: Please input an integer")
-        except OverflowError as e:
-            print("ERROR: You must only choose between the numbers 1-7")
-
+        if self.on and 1 <= channel <= 120:
+            self.channel = channel
+        else:
+            print ("ERROR: You must only choose between the numbers 1-120")
     #Function that displays/returns the volume on the TV object
     def getVolume(self):
         return self.volumeLevel
 
     #Function that changes the volulme on the TV object  
     def setVolume(self,volume):
-        try:
-            if self.on and 1 <= volume <= 7:
-                self.volumeLevel=volume
-                return self.volumeLevel
-
-        except TypeError:
-            print("ERROR: Please input an integer")
-        except OverflowError as e:
-            print("ERROR: You must only choose between the numbers 1-7")
+        if self.on and 1 <= volume <= 7:
+            self.volume = volume
+        else:
+            print ("ERROR: You must only choose between the numbers 1-7")
 
     #Function that increases the channel on the TV object by 1
     def channelUp(self):
@@ -68,13 +57,15 @@ class TV:
 class TestTv:
     def main():
         tv1 = TV()
+        tv1.turnOn()
         tv1.setChannel(1000)
-        tv1.setVolume(3)
+        tv1.setVolume(1000)
         print("tv1's channel is", tv1.getChannel(), "and volume level is", tv1.getVolume())
         
         tv2 = TV()
-        tv1.setChannel(30)
-        tv1.setVolume(3)
-        print("tv1's channel is", tv1.getChannel(), "and volume level is", tv1.getVolume())      
+        tv2.turnOn()
+        tv2.setChannel(3)
+        tv2.setVolume(2)
+        print("tv2's channel is", tv2.getChannel(), "and volume level is", tv2.getVolume())      
 
 TestTv.main()
