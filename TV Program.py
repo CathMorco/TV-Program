@@ -86,6 +86,14 @@ class TestTV:
         self.tv_widget.volume_combo.setCurrentIndex(self.tv_widget.tv.getVolume() - 1)
         self.tv_widget.volume_combo.currentIndexChanged.connect(self.setVolume)
 
+        self.tv_widget.channel_label2.setText(f"tv1's Current Channel is {self.tv_widget.tv.getChannel()}")
+        self.tv_widget.channel_combo2.setCurrentIndex(self.tv_widget.tv.getChannel() - 1)
+        self.tv_widget.channel_combo2.currentIndexChanged.connect(self.setChannel2)
+
+        self.tv_widget.volume_label2.setText(f"And volume level is {self.tv_widget.tv.getVolume()}")
+        self.tv_widget.volume_combo2.setCurrentIndex(self.tv_widget.tv.getVolume() - 1)
+        self.tv_widget.volume_combo2.currentIndexChanged.connect(self.setVolume2)
+
     def setChannel(self):
         channel1 = int(self.tv_widget.channel_combo.currentText())
         self.tv_widget.tv.setChannel(channel1)
@@ -95,6 +103,16 @@ class TestTV:
         volume1 = int(self.tv_widget.volume_combo.currentText())
         self.tv_widget.tv.setVolume(volume1)
         self.tv_widget.volume_label.setText("And volume level is {}".format(volume1))
+
+    def setChannel2(self):
+        channel2 = int(self.tv_widget.channel_combo2.currentText())
+        self.tv_widget.tv.setChannel(channel2)
+        self.tv_widget.channel_label2.setText("tv2's Current Channel is {}".format(channel2))
+
+    def setVolume2(self):
+        volume2 = int(self.tv_widget.volume_combo2.currentText())
+        self.tv_widget.tv.setVolume(volume2)
+        self.tv_widget.volume_label2.setText("And volume level is {}".format(volume2))
 
 
 class TVWidget(QWidget):
@@ -116,11 +134,27 @@ class TVWidget(QWidget):
             self.volume_combo.addItem(str(volume))
         self.volume_combo.setCurrentIndex(self.tv.getVolume() - 1)
 
+        self.channel_label2 = QLabel(f"Current Channel: {self.tv.getChannel()}")
+        self.channel_combo2 = QComboBox()
+        for channel2 in range(1, 121):
+            self.channel_combo2.addItem(str(channel2))
+        self.channel_combo2.setCurrentIndex(self.tv.getChannel() - 1)
+
+        self.volume_label2 = QLabel(f"Current Volume: {self.tv.getVolume()}")
+        self.volume_combo2 = QComboBox()
+        for volume2 in range(1, 8):
+            self.volume_combo2.addItem(str(volume2))
+        self.volume_combo2.setCurrentIndex(self.tv.getVolume() - 1)
+
         vbox = QVBoxLayout()
         vbox.addWidget(self.channel_label)
         vbox.addWidget(self.channel_combo)
         vbox.addWidget(self.volume_label)
         vbox.addWidget(self.volume_combo)
+        vbox.addWidget(self.channel_label2)
+        vbox.addWidget(self.channel_combo2)
+        vbox.addWidget(self.volume_label2)
+        vbox.addWidget(self.volume_combo2)
         self.setLayout(vbox)
 
         self.tv_test = TestTV(self)
