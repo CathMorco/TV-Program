@@ -14,40 +14,36 @@ class TV:
         self.on = False
 
     #Function that displays/returns the channel on the TV object
-    def getChannel(self,channel):
-        self.channel = channel
-        return channel
+    def getChannel(self):
+        return self.channel
 
     #Function that changes the channel on the TV object
     def setChannel(self,channel):
         try:
             if self.on and 1 <= channel <= 120:
-                self.channel = channel
+                self.channel=channel
+                return self.channel
 
-            else:
-                raise OverflowError("ERROR: You must only choose between the numbers 1-120")
         except TypeError:
             print("ERROR: Please input an integer")
         except OverflowError as e:
-            print(e)
+            print("ERROR: You must only choose between the numbers 1-7")
 
     #Function that displays/returns the volume on the TV object
-    def getVolume(self,volume):
-        self.volume = volume
-        return volume
+    def getVolume(self):
+        return self.volumeLevel
 
     #Function that changes the volulme on the TV object  
     def setVolume(self,volume):
         try:
             if self.on and 1 <= volume <= 7:
-                self.volume = volume
+                self.volumeLevel=volume
+                return self.volumeLevel
 
-            else:
-                raise OverflowError("ERROR: You must only choose between the numbers 1-7")
         except TypeError:
             print("ERROR: Please input an integer")
         except OverflowError as e:
-            print(e)
+            print("ERROR: You must only choose between the numbers 1-7")
 
     #Function that increases the channel on the TV object by 1
     def channelUp(self):
@@ -61,15 +57,24 @@ class TV:
 
     #Function that increases the volume on the TV object by 1
     def volumeUp(self):
-        if self.on and self.volume < 7:
-            self.volume += 1
+        if self.on and self.volumeLevel < 7:
+            self.volumeLevel += 1
 
     #Function that decreases the volume on the TV object by 1
     def volumeDown(self):
-        if self.on and self.volume > 1:
-            self.volume -= 1
+        if self.on and self.volumeLevel > 1:
+            self.volumeLevel -= 1
 
 class TestTv:
-    def main(self):
+    def main():
         tv1 = TV()
+        tv1.setChannel(1000)
+        tv1.setVolume(3)
+        print("tv1's channel is", tv1.getChannel(), "and volume level is", tv1.getVolume())
+        
         tv2 = TV()
+        tv1.setChannel(30)
+        tv1.setVolume(3)
+        print("tv1's channel is", tv1.getChannel(), "and volume level is", tv1.getVolume())      
+
+TestTv.main()
