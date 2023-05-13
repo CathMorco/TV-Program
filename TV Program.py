@@ -4,15 +4,23 @@ class TV:
         self.volumeLevel
         self.on
 
-TV()
-turnOn()
-turnOff()
-getChannel()
-setChannel(channel:)
-channelUp()
-channelDown()
-volumeUp()
-volumeDown()
+    def turnOn(self):
+        self.on
+
+    def turnOff(self):
+        self.on
+
+    def getChannel(self):
+        self.channel
+
+    def setChannel(self):
+
+    def channelUp(self):
+
+    def volumeUp(self):
+        
+    def volumeDown(self):
+
 class TestTv:
     def main(self):
         tv1 = TV()
