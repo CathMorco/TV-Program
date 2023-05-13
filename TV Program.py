@@ -74,6 +74,29 @@ class TestTv:
         tv2.setVolume(2)
         print("tv2's channel is", tv2.getChannel(), "and volume level is", tv2.getVolume())      
 
+class TestTV:
+    def __init__(self, tv_widget):
+        self.tv_widget = tv_widget
+
+        self.tv_widget.channel_label.setText(f"tv1's Current Channel is {self.tv_widget.tv.getChannel()}")
+        self.tv_widget.channel_combo.setCurrentIndex(self.tv_widget.tv.getChannel() - 1)
+        self.tv_widget.channel_combo.currentIndexChanged.connect(self.setChannel)
+
+        self.tv_widget.volume_label.setText(f"And volume level is {self.tv_widget.tv.getVolume()}")
+        self.tv_widget.volume_combo.setCurrentIndex(self.tv_widget.tv.getVolume() - 1)
+        self.tv_widget.volume_combo.currentIndexChanged.connect(self.setVolume)
+
+    def setChannel(self):
+        channel1 = int(self.tv_widget.channel_combo.currentText())
+        self.tv_widget.tv.setChannel(channel1)
+        self.tv_widget.channel_label.setText("tv1's Current Channel is {}".format(channel1))
+
+    def setVolume(self):
+        volume1 = int(self.tv_widget.volume_combo.currentText())
+        self.tv_widget.tv.setVolume(volume1)
+        self.tv_widget.volume_label.setText("And volume level is {}".format(volume1))
+
+
 class TVWidget(QWidget):
     def __init__(self):
         super().__init__()
@@ -86,16 +109,12 @@ class TVWidget(QWidget):
         for channel in range(1, 121):
             self.channel_combo.addItem(str(channel))
         self.channel_combo.setCurrentIndex(self.tv.getChannel() - 1)
-        self.channel_combo.currentIndexChanged.connect(self.setChannel)
 
         self.volume_label = QLabel(f"Current Volume: {self.tv.getVolume()}")
         self.volume_combo = QComboBox()
         for volume in range(1, 8):
             self.volume_combo.addItem(str(volume))
         self.volume_combo.setCurrentIndex(self.tv.getVolume() - 1)
-        self.volume_combo.currentIndexChanged.connect(self.setVolume)
-
-
 
         vbox = QVBoxLayout()
         vbox.addWidget(self.channel_label)
@@ -104,16 +123,10 @@ class TVWidget(QWidget):
         vbox.addWidget(self.volume_combo)
         self.setLayout(vbox)
 
+        self.tv_test = TestTV(self)
+
         self.setWindowTitle('TV Widget')
         self.show()
-
-    def setChannel(self, index):
-        channel1 = int(self.channel_combo.currentText())
-        self.channel_label.setText("Current Channel: {}".format(channel1))
-
-    def setVolume(self):
-        volume1 = int(self.volume_combo.currentText())
-        self.volume_label.setText("Current Volume: {}".format(volume1))
 
 
 if __name__ == '__main__':
