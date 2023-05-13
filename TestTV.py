@@ -51,6 +51,41 @@ class TestTv:
                 TestTv.channelFunction()
         elif choice[0] == "n":
             sys.exit()
+
+        choice4=input("Would you like to adjust the volume?(Y/N): ")
+        choice4= choice4.lower()
+        if choice4[0]=="y":
+            choice5=input("Would you like to increase or decrease the volume?(Increase/Decrease): ")
+            choice5=choice5.lower()            
+            if choice5[0] == "i":
+                choice6 = input("Which tv's volume would you like to increase?(1/2): ")
+                choice6 = choice6.lower()
+                if choice6[0] == "1":
+                    tv1.volumeUp()
+                    print("tv1's channel is", tv1.getChannel(), "and volume level is", tv1.getVolume())
+                elif choice6[0] == "2":
+                    tv2.volumeUp()
+                    print("tv2's channel is", tv2.getChannel(), "and volume level is", tv2.getVolume())
+                else:
+                    print("Invalid input. Please try again.")
+                    TestTv.channelFunction()
+            elif choice5[0] == "d":
+                choice6 = input("Which tv's volume would you like to decrease?:(1/2)")
+                choice6 = choice6.lower()
+                if choice6[0] == "1":
+                    tv1.volumeDown()
+                    print("tv1's channel is", tv1.getChannel(), "and volume level is", tv1.getVolume())
+                elif choice6[0] == "2":
+                    tv2.volumeDown()
+                    print("tv2's channel is", tv2.getChannel(), "and volume level is", tv2.getVolume())
+                else:
+                    print("Invalid input. Please try again.")
+                    TestTv.channelFunction()
+            else:
+                print("Invalid input. Please try again.")
+                TestTv.channelFunction()
+        elif choice4[0] == "n":
+            sys.exit()
         again = input("Would you like to try again?(Y/N): ")
         again = again.lower()
         if again[0] == "y":
