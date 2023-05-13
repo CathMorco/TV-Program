@@ -1,3 +1,4 @@
+
 class TV:
     #Initializes intances
     def __init__(self):
@@ -19,20 +20,21 @@ class TV:
 
     #Function that changes the channel on the TV object
     def setChannel(self,channel):
-        if self.on and 1 <= channel <= 120:
-            self.channel = channel
-        else:
-            print ("ERROR: You must only choose between the numbers 1-120")
+        while not (1 <= channel <= 120):
+            print("ERROR: You must only choose between the numbers 1-120")
+            channel = int(input("Enter a channel number: "))
+        self.channel = channel
+
     #Function that displays/returns the volume on the TV object
     def getVolume(self):
         return self.volumeLevel
 
     #Function that changes the volulme on the TV object  
-    def setVolume(self,volume):
-        if self.on and 1 <= volume <= 7:
-            self.volumeLevel = volume
-        else:
-            print ("ERROR: You must only choose between the numbers 1-7")
+    def setVolume(self, volume):
+        while not (1 <= volume <= 7):
+            print("ERROR: You must only choose between the numbers 1-7")
+            volume = int(input("Enter a volume level: "))
+        self.volumeLevel = volume
 
     #Function that increases the channel on the TV object by 1
     def channelUp(self):
