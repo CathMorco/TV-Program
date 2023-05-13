@@ -72,7 +72,7 @@ class TestTV:
         self.tv_widget.volume_combo.setCurrentIndex(self.tv_widget.tv.getVolume() - 1)
         self.tv_widget.volume_combo.currentIndexChanged.connect(self.setVolume)
 
-        self.tv_widget.channel_label2.setText(f"tv1's Current Channel is {self.tv_widget.tv.getChannel()}")
+        self.tv_widget.channel_label2.setText(f"tv2's Current Channel is {self.tv_widget.tv.getChannel()}")
         self.tv_widget.channel_combo2.setCurrentIndex(self.tv_widget.tv.getChannel() - 1)
         self.tv_widget.channel_combo2.currentIndexChanged.connect(self.setChannel2)
 
