@@ -64,40 +64,43 @@ class TestTV:
     def __init__(self, tv_widget):
         self.tv_widget = tv_widget
 
-        self.tv_widget.channel_label.setText(f"tv1's Current Channel is {self.tv_widget.tv.getChannel()}")
-        self.tv_widget.channel_combo.setCurrentIndex(self.tv_widget.tv.getChannel() - 1)
+        self.tv1 = TV()
+        self.tv2 = TV()
+
+        self.tv_widget.channel_label.setText(f"tv1's Current Channel is {self.tv1.getChannel()}")
+        self.tv_widget.channel_combo.setCurrentIndex(self.tv1.getChannel() - 1)
         self.tv_widget.channel_combo.currentIndexChanged.connect(self.setChannel)
 
-        self.tv_widget.volume_label.setText(f"And volume level is {self.tv_widget.tv.getVolume()}")
-        self.tv_widget.volume_combo.setCurrentIndex(self.tv_widget.tv.getVolume() - 1)
+        self.tv_widget.volume_label.setText(f"And volume level is {self.tv1.getVolume()}")
+        self.tv_widget.volume_combo.setCurrentIndex(self.tv1.getVolume() - 1)
         self.tv_widget.volume_combo.currentIndexChanged.connect(self.setVolume)
 
-        self.tv_widget.channel_label2.setText(f"tv2's Current Channel is {self.tv_widget.tv.getChannel()}")
-        self.tv_widget.channel_combo2.setCurrentIndex(self.tv_widget.tv.getChannel() - 1)
+        self.tv_widget.channel_label2.setText(f"tv2's Current Channel is {self.tv2.getChannel()}")
+        self.tv_widget.channel_combo2.setCurrentIndex(self.tv2.getChannel() - 1)
         self.tv_widget.channel_combo2.currentIndexChanged.connect(self.setChannel2)
 
-        self.tv_widget.volume_label2.setText(f"And volume level is {self.tv_widget.tv.getVolume()}")
-        self.tv_widget.volume_combo2.setCurrentIndex(self.tv_widget.tv.getVolume() - 1)
+        self.tv_widget.volume_label2.setText(f"And volume level is {self.tv2.getVolume()}")
+        self.tv_widget.volume_combo2.setCurrentIndex(self.tv2.getVolume() - 1)
         self.tv_widget.volume_combo2.currentIndexChanged.connect(self.setVolume2)
 
     def setChannel(self):
         channel1 = int(self.tv_widget.channel_combo.currentText())
-        self.tv_widget.tv.setChannel(channel1)
+        self.tv1.setChannel(channel1)
         self.tv_widget.channel_label.setText("tv1's Current Channel is {}".format(channel1))
 
     def setVolume(self):
         volume1 = int(self.tv_widget.volume_combo.currentText())
-        self.tv_widget.tv.setVolume(volume1)
+        self.tv1.setVolume(volume1)
         self.tv_widget.volume_label.setText("And volume level is {}".format(volume1))
 
     def setChannel2(self):
         channel2 = int(self.tv_widget.channel_combo2.currentText())
-        self.tv_widget.tv.setChannel(channel2)
+        self.tv2.setChannel(channel2)
         self.tv_widget.channel_label2.setText("tv2's Current Channel is {}".format(channel2))
 
     def setVolume2(self):
         volume2 = int(self.tv_widget.volume_combo2.currentText())
-        self.tv_widget.tv.setVolume(volume2)
+        self.tv2.setVolume(volume2)
         self.tv_widget.volume_label2.setText("And volume level is {}".format(volume2))
 
 
