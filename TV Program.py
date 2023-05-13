@@ -1,3 +1,32 @@
+from PyQt5.QtWidgets import QComboBox, QMainWindow, QApplication, QWidget, QVBoxLayout
+import sys
+
+
+class MainWindow(QMainWindow):
+
+    def __init__(self):
+        super().__init__()
+
+        combobox1 = QComboBox()
+        combobox1.addItems([str(e) for e in range(1, 121)])
+        layout = QVBoxLayout()
+        layout.addWidget(combobox1)
+
+        container = QWidget()
+        container.setLayout(layout)
+
+        self.setCentralWidget(container)
+
+    def current_text_changed(self, s):
+        print("Current text: ", s)
+
+
+app = QApplication(sys.argv)
+w = MainWindow()
+w.show()
+app.exec_()
+
+
 class TV:
     #Initializes intances
     def __init__(self):
