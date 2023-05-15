@@ -143,10 +143,46 @@ class TestTv:
             print("ERROR: You must only choose between Y or N")
             again = input("Enter your choice: ").lower()
         if again[0] == "y":
-            num1= int(input("From 1-120, what channel would you like for tv1?:"))
-            num2= int(input("From 1-7, what volume level would you like for tv1?:"))
-            num3= int(input("From 1-120, what channel would you like for tv2?:"))
-            num4= int(input("From 1-7, what volume level would you like for tv2?:"))
+            while True:
+                try:
+                    num1= int(input("From 1-120, what channel would you like for tv2?:"))
+                    if 1 <= num1 <= 120:
+                        break
+                    else:
+                        print("Please enter a valid channel number between 1 and 120.")
+                except ValueError:
+                    print("Please enter a valid integer.")
+
+            while True:
+                try:
+                    num2= int(input("From 1-7, what volume level would you like for tv1?:"))
+                    if 1 <= num2 <= 7:
+                        break
+                    else:
+                        print("Please enter a valid volume level between 1 and 7.")
+                except ValueError:
+                    print("Please enter a valid integer.")
+
+            while True:
+                try:
+                    num3= int(input("From 1-120, what channel would you like for tv2?:"))
+                    if 1 <= num3 <= 120:
+                        break
+                    else:
+                        print("Please enter a valid channel number between 1 and 120.")
+                except ValueError:
+                    print("Please enter a valid integer.")
+
+            while True:
+                try:
+                    num4= int(input("From 1-7, what volume level would you like for tv2?:"))
+                    if 1 <= num4 <= 7:
+                        break
+                    else:
+                        print("Please enter a valid volume level between 1 and 7.")
+                except ValueError:
+                    print("Please enter a valid integer.")
+
             TestTv.main(num1,num2,num3,num4)
         else:
             sys.exit()
