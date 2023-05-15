@@ -28,19 +28,19 @@ class TestTv:
     def channelFunction(text1, text2):
         choice=input("Would you like to adjust the channel number?(Y/N): ")
         choice= choice.lower()
-        while choice not in ['y', 'n']:
+        while choice[0] not in ['y', 'n']:
             print("ERROR: You must only choose between Y or N")
             choice = input("Enter your choice: ").lower()
         if choice[0]=="y":
             choice2=input("Would you like to increase or decrease the channel number?(Increase/Decrease): ")
             choice2=choice2.lower()
-            while choice2 not in ['i', 'd']:
+            while choice2[0] not in ['i', 'd']:
                 print("ERROR: You must only choose between Increase or Decrease")
                 choice2 = input("Enter your choice: ").lower()            
             if choice2[0] == "i":
                 choice3 = input("Which tv's channel would you like to increase?(1/2): ")
                 choice3 = choice3.lower()
-                while choice3 not in ["1", "2"]:
+                while choice3[0] not in ["1", "2"]:
                     print("ERROR: You must only choose between 1 or 2")
                     choice3 = input("Enter your choice: ").lower()
                 if choice3[0] == "1":
@@ -56,7 +56,7 @@ class TestTv:
             elif choice2[0] == "d":
                 choice3 = input("Which tv's channel would you like to decrease?:(1/2)")
                 choice3 = choice3.lower()
-                while choice3 not in ["1", "2"]:
+                while choice3[0] not in ["1", "2"]:
                     print("ERROR: You must only choose between 1 or 2")
                     choice3 = input("Enter your choice: ").lower()
                 if choice3[0] == "1":
@@ -79,19 +79,19 @@ class TestTv:
             TestTv.channelFunction(text1, text2)
         choice4=input("Would you like to adjust the volume?(Y/N): ")
         choice4= choice4.lower()
-        while choice4 not in ['y', 'n']:
+        while choice4[0] not in ['y', 'n']:
             print("ERROR: You must only choose between Y or N")
             choice4 = input("Enter your choice: ").lower()
         if choice4[0]=="y":
             choice5=input("Would you like to increase or decrease the volume?(Increase/Decrease): ")
             choice5=choice5.lower()
-            while choice5 not in ['i', 'd']:
+            while choice5[0] not in ['i', 'd']:
                 print("ERROR: You must only choose between Increase or Decrease")
                 choice5 = input("Enter your choice: ").lower()            
             if choice5[0] == "i":
                 choice6 = input("Which tv's volume would you like to increase?(1/2): ")
                 choice6 = choice6.lower()
-                while choice6 not in ['1', '2']:
+                while choice6[0] not in ['1', '2']:
                     print("ERROR: You must only choose between 1 or 2")
                     choice6 = input("Enter your choice: ").lower()
                 if choice6[0] == "1":
@@ -110,7 +110,7 @@ class TestTv:
             elif choice5[0] == "d":
                 choice6 = input("Which tv's volume would you like to decrease?:(1/2)")
                 choice6 = choice6.lower()
-                while choice6 not in ['1', '2']:
+                while choice6[0] not in ['1', '2']:
                     print("ERROR: You must only choose between 1 or 2")
                     choice6 = input("Enter your choice: ").lower()
                 if choice6[0] == "1":
@@ -139,13 +139,13 @@ class TestTv:
         TestTv.mainProgram(text)
         again = input("Would you like to try again?(Y/N): ")
         again = again.lower()
-        while again not in ['y', 'n']:
+        while again[0] not in ['y', 'n']:
             print("ERROR: You must only choose between Y or N")
             again = input("Enter your choice: ").lower()
         if again[0] == "y":
             while True:
                 try:
-                    num1= int(input("From 1-120, what channel would you like for tv2?:"))
+                    num1= int(input("From 1-120, what channel would you like for tv1?:"))
                     if 1 <= num1 <= 120:
                         break
                     else:
@@ -276,7 +276,7 @@ tv2 = TV()
 
 while True:
     try:
-        num1= int(input("From 1-120, what channel would you like for tv2?:"))
+        num1= int(input("From 1-120, what channel would you like for tv1?:"))
         if 1 <= num1 <= 120:
             break
         else:
