@@ -33,10 +33,16 @@ class TestTv:
             choice = input("Enter your choice: ").lower()
         if choice[0]=="y":
             choice2=input("Would you like to increase or decrease the channel number?(Increase/Decrease): ")
-            choice2=choice2.lower()            
+            choice2=choice2.lower()
+            while choice2 not in ['i', 'd']:
+                print("ERROR: You must only choose between Increase or Decrease")
+                choice2 = input("Enter your choice: ").lower()            
             if choice2[0] == "i":
                 choice3 = input("Which tv's channel would you like to increase?(1/2): ")
                 choice3 = choice3.lower()
+                while choice3 not in ["1", "2"]:
+                    print("ERROR: You must only choose between 1 or 2")
+                    choice3 = input("Enter your choice: ").lower()
                 if choice3[0] == "1":
                     tv1.channelUp()
                     channel = str(tv1.getChannel())
@@ -47,12 +53,12 @@ class TestTv:
                     channel2 = str(tv2.getChannel())
                     volume2= str(tv2.getVolume())
                     text2 = ("tv2's channel is " + channel2 + " and volume level is " + volume2)
-                else:
-                    print("Invalid input. Please try again.")
-                    TestTv.channelFunction()
             elif choice2[0] == "d":
                 choice3 = input("Which tv's channel would you like to decrease?:(1/2)")
                 choice3 = choice3.lower()
+                while choice3 not in ["1", "2"]:
+                    print("ERROR: You must only choose between 1 or 2")
+                    choice3 = input("Enter your choice: ").lower()
                 if choice3[0] == "1":
                     tv1.channelDown()
                     channel = str(tv1.getChannel())
@@ -73,12 +79,21 @@ class TestTv:
             TestTv.channelFunction(text1, text2)
         choice4=input("Would you like to adjust the volume?(Y/N): ")
         choice4= choice4.lower()
+        while choice4 not in ['y', 'n']:
+            print("ERROR: You must only choose between Y or N")
+            choice4 = input("Enter your choice: ").lower()
         if choice4[0]=="y":
             choice5=input("Would you like to increase or decrease the volume?(Increase/Decrease): ")
-            choice5=choice5.lower()            
+            choice5=choice5.lower()
+            while choice5 not in ['i', 'd']:
+                print("ERROR: You must only choose between Increase or Decrease")
+                choice5 = input("Enter your choice: ").lower()            
             if choice5[0] == "i":
                 choice6 = input("Which tv's volume would you like to increase?(1/2): ")
                 choice6 = choice6.lower()
+                while choice6 not in ['1', '2']:
+                    print("ERROR: You must only choose between 1 or 2")
+                    choice6 = input("Enter your choice: ").lower()
                 if choice6[0] == "1":
                     tv1.volumeUp()
                     channel = str(tv1.getChannel())
@@ -95,6 +110,9 @@ class TestTv:
             elif choice5[0] == "d":
                 choice6 = input("Which tv's volume would you like to decrease?:(1/2)")
                 choice6 = choice6.lower()
+                while choice6 not in ['1', '2']:
+                    print("ERROR: You must only choose between 1 or 2")
+                    choice6 = input("Enter your choice: ").lower()
                 if choice6[0] == "1":
                     tv1.volumeDown()
                     channel = str(tv1.getChannel())
@@ -107,20 +125,23 @@ class TestTv:
                     text2 = ("tv2's channel is " + channel2 + " and volume level is " + volume2)
                 else:
                     print("Invalid input. Please try again.")
-                    TestTv.channelFunction()
+                    TestTv.channelFunction(text1, text2)
             else:
                 print("Invalid input. Please try again.")
-                TestTv.channelFunction()
+                TestTv.channelFunction(text1, text2)
         elif choice4[0] == "n":
             pass
         else:
             print("Invalid input. Please try again.")
-            TestTv.channelFunction()
+            TestTv.channelFunction(text1, text2)
         text = text1 + text2
         print("Check the window screen :D If you would like to proceed with the program, click the exit button on the window display screen :D")
         TestTv.mainProgram(text)
         again = input("Would you like to try again?(Y/N): ")
         again = again.lower()
+        while again not in ['y', 'n']:
+            print("ERROR: You must only choose between Y or N")
+            again = input("Enter your choice: ").lower()
         if again[0] == "y":
             num1= int(input("From 1-120, what channel would you like for tv1?:"))
             num2= int(input("From 1-7, what volume level would you like for tv1?:"))
@@ -216,8 +237,45 @@ class TestTv:
 
 tv1 = TV()
 tv2 = TV()
-num1= int(input("From 1-120, what channel would you like for tv1?:"))
-num2= int(input("From 1-7, what volume level would you like for tv1?:"))
-num3= int(input("From 1-120, what channel would you like for tv2?:"))
-num4= int(input("From 1-7, what volume level would you like for tv2?:"))
+
+while True:
+    try:
+        num1= int(input("From 1-120, what channel would you like for tv2?:"))
+        if 1 <= num1 <= 120:
+            break
+        else:
+            print("Please enter a valid channel number between 1 and 120.")
+    except ValueError:
+        print("Please enter a valid integer.")
+
+while True:
+    try:
+        num2= int(input("From 1-7, what volume level would you like for tv1?:"))
+        if 1 <= num2 <= 7:
+            break
+        else:
+            print("Please enter a valid volume level between 1 and 7.")
+    except ValueError:
+        print("Please enter a valid integer.")
+
+while True:
+    try:
+        num3= int(input("From 1-120, what channel would you like for tv2?:"))
+        if 1 <= num3 <= 120:
+            break
+        else:
+            print("Please enter a valid channel number between 1 and 120.")
+    except ValueError:
+        print("Please enter a valid integer.")
+
+while True:
+    try:
+        num4= int(input("From 1-7, what volume level would you like for tv2?:"))
+        if 1 <= num4 <= 7:
+            break
+        else:
+            print("Please enter a valid volume level between 1 and 7.")
+    except ValueError:
+        print("Please enter a valid integer.")
+
 TestTv.main(num1,num2,num3,num4)
