@@ -11,20 +11,20 @@ class TestTv:
         tv1.setVolume(Volumenum1)
         channel = str(tv1.getChannel())
         volume= str(tv1.getVolume())
-        x = ("tv1's channel is " + channel + " and volume level is " + volume)
+        text1 = ("tv1's channel is " + channel + " and volume level is " + volume)
         
         tv2.turnOn()
         tv2.setChannel(Channelnum2)
         tv2.setVolume(Volumenum2)
         channel2 = str(tv2.getChannel())
         volume2= str(tv2.getVolume())
-        y = ("tv2's channel is " + channel2 + " and volume level is " + volume2)
+        text2 = ("tv2's channel is " + channel2 + " and volume level is " + volume2)
 
-        text = x + y
+        text = text1 + text2
         TestTv.mainProgram(text)
-        TestTv.channelFunction(x, y)
+        TestTv.channelFunction(text1, text2)
 
-    def channelFunction(x, y):
+    def channelFunction(text1, text2):
         choice=input("Would you like to adjust the channel number?(Y/N): ")
         choice= choice.lower()
         if choice[0]=="y":
@@ -37,12 +37,12 @@ class TestTv:
                     tv1.channelUp()
                     channel = str(tv1.getChannel())
                     volume= str(tv1.getVolume())
-                    x = ("tv1's channel is " + channel + " and volume level is " + volume)
+                    text1 = ("tv1's channel is " + channel + " and volume level is " + volume)
                 elif choice3[0] == "2":
                     tv2.channelUp()
                     channel2 = str(tv2.getChannel())
                     volume2= str(tv2.getVolume())
-                    y = ("tv2's channel is " + channel2 + " and volume level is " + volume2)
+                    text2 = ("tv2's channel is " + channel2 + " and volume level is " + volume2)
                 else:
                     print("Invalid input. Please try again.")
                     TestTv.channelFunction()
@@ -53,12 +53,12 @@ class TestTv:
                     tv1.channelDown()
                     channel = str(tv1.getChannel())
                     volume= str(tv1.getVolume())
-                    x = ("tv1's channel is " + channel + " and volume level is " + volume)
+                    text1= ("tv1's channel is " + channel + " and volume level is " + volume)
                 elif choice3[0] == "2":
                     tv2.channelDown()
                     channel2 = str(tv2.getChannel())
                     volume2= str(tv2.getVolume())
-                    x = ("tv2's channel is " + channel2 + " and volume level is " + volume2)
+                    text2 = ("tv2's channel is " + channel2 + " and volume level is " + volume2)
                 else:
                     print("Invalid input. Please try again.")
                     TestTv.channelFunction()
@@ -82,12 +82,12 @@ class TestTv:
                     tv1.volumeUp()
                     channel = str(tv1.getChannel())
                     volume= str(tv1.getVolume())
-                    x = ("tv1's channel is " + channel + " and volume level is " + volume)
+                    text1= ("tv1's channel is " + channel + " and volume level is " + volume)
                 elif choice6[0] == "2":
                     tv2.volumeUp()
                     channel2 = str(tv2.getChannel())
                     volume2= str(tv2.getVolume())
-                    x = ("tv2's channel is " + channel2 + " and volume level is " + volume2)
+                    text2 = ("tv2's channel is " + channel2 + " and volume level is " + volume2)
                 else:
                     print("Invalid input. Please try again.")
                     TestTv.channelFunction()
@@ -98,12 +98,12 @@ class TestTv:
                     tv1.volumeDown()
                     channel = str(tv1.getChannel())
                     volume= str(tv1.getVolume())
-                    x = ("tv1's channel is " + channel + " and volume level is " + volume)
+                    text1= ("tv1's channel is " + channel + " and volume level is " + volume)
                 elif choice6[0] == "2":
                     tv2.volumeDown()
                     channel2 = str(tv2.getChannel())
                     volume2= str(tv2.getVolume())
-                    x = ("tv2's channel is " + channel2 + " and volume level is " + volume2)
+                    text2 = ("tv2's channel is " + channel2 + " and volume level is " + volume2)
                 else:
                     print("Invalid input. Please try again.")
                     TestTv.channelFunction()
@@ -115,7 +115,7 @@ class TestTv:
         else:
             print("Invalid input. Please try again.")
             TestTv.channelFunction()
-        text = x + y
+        text = text1 + text2
         TestTv.mainProgram(text)
         again = input("Would you like to try again?(Y/N): ")
         again = again.lower()
