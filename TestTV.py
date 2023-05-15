@@ -21,12 +21,16 @@ class TestTv:
         text2 = ("tv2's channel is " + channel2 + " and volume level is " + volume2)
 
         text = text1 + text2
+        print("Check the window screen :D If you would like to proceed with the program, click the exit button on the window display screen :D")
         TestTv.mainProgram(text)
         TestTv.channelFunction(text1, text2)
 
     def channelFunction(text1, text2):
         choice=input("Would you like to adjust the channel number?(Y/N): ")
         choice= choice.lower()
+        while choice not in ['y', 'n']:
+            print("ERROR: You must only choose between Y or N")
+            choice = input("Enter your choice: ").lower()
         if choice[0]=="y":
             choice2=input("Would you like to increase or decrease the channel number?(Increase/Decrease): ")
             choice2=choice2.lower()            
@@ -62,14 +66,11 @@ class TestTv:
                 else:
                     print("Invalid input. Please try again.")
                     TestTv.channelFunction()
-            else:
-                print("Invalid input. Please try again.")
-                TestTv.channelFunction()
         elif choice[0] == "n":
             pass
         else:
             print("Invalid input. Please try again.")
-            TestTv.channelFunction()
+            TestTv.channelFunction(text1, text2)
         choice4=input("Would you like to adjust the volume?(Y/N): ")
         choice4= choice4.lower()
         if choice4[0]=="y":
@@ -116,6 +117,7 @@ class TestTv:
             print("Invalid input. Please try again.")
             TestTv.channelFunction()
         text = text1 + text2
+        print("Check the window screen :D If you would like to proceed with the program, click the exit button on the window display screen :D")
         TestTv.mainProgram(text)
         again = input("Would you like to try again?(Y/N): ")
         again = again.lower()
