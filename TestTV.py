@@ -1,6 +1,7 @@
 #Imports necessary elements
 from TVProgram import TV
 import sys
+import pygame
 
 
 class TestTv:
@@ -8,15 +9,22 @@ class TestTv:
         tv1.turnOn()
         tv1.setChannel(Channelnum1)
         tv1.setVolume(Volumenum1)
-        print("tv1's channel is", tv1.getChannel(), "and volume level is", tv1.getVolume())
+        channel = str(tv1.getChannel())
+        volume= str(tv1.getVolume())
+        x = ("tv1's channel is " + channel + " and volume level is " + volume)
         
-
         tv2.turnOn()
         tv2.setChannel(Channelnum2)
         tv2.setVolume(Volumenum2)
-        print("tv2's channel is", tv2.getChannel(), "and volume level is", tv2.getVolume())
+        channel2 = str(tv2.getChannel())
+        volume2= str(tv2.getVolume())
+        y = ("tv2's channel is " + channel2 + " and volume level is " + volume2)
 
-    def channelFunction():
+        text = x + y
+        TestTv.mainProgram(text)
+        TestTv.channelFunction(x, y)
+
+    def channelFunction(x, y):
         choice=input("Would you like to adjust the channel number?(Y/N): ")
         choice= choice.lower()
         if choice[0]=="y":
@@ -27,10 +35,14 @@ class TestTv:
                 choice3 = choice3.lower()
                 if choice3[0] == "1":
                     tv1.channelUp()
-                    print("tv1's channel is", tv1.getChannel(), "and volume level is", tv1.getVolume())
+                    channel = str(tv1.getChannel())
+                    volume= str(tv1.getVolume())
+                    x = ("tv1's channel is " + channel + " and volume level is " + volume)
                 elif choice3[0] == "2":
                     tv2.channelUp()
-                    print("tv2's channel is", tv2.getChannel(), "and volume level is", tv2.getVolume())
+                    channel2 = str(tv2.getChannel())
+                    volume2= str(tv2.getVolume())
+                    y = ("tv2's channel is " + channel2 + " and volume level is " + volume2)
                 else:
                     print("Invalid input. Please try again.")
                     TestTv.channelFunction()
@@ -39,10 +51,14 @@ class TestTv:
                 choice3 = choice3.lower()
                 if choice3[0] == "1":
                     tv1.channelDown()
-                    print("tv1's channel is", tv1.getChannel(), "and volume level is", tv1.getVolume())
+                    channel = str(tv1.getChannel())
+                    volume= str(tv1.getVolume())
+                    x = ("tv1's channel is " + channel + " and volume level is " + volume)
                 elif choice3[0] == "2":
                     tv2.channelDown()
-                    print("tv2's channel is", tv2.getChannel(), "and volume level is", tv2.getVolume())
+                    channel2 = str(tv2.getChannel())
+                    volume2= str(tv2.getVolume())
+                    x = ("tv2's channel is " + channel2 + " and volume level is " + volume2)
                 else:
                     print("Invalid input. Please try again.")
                     TestTv.channelFunction()
@@ -50,8 +66,10 @@ class TestTv:
                 print("Invalid input. Please try again.")
                 TestTv.channelFunction()
         elif choice[0] == "n":
-            sys.exit()
-
+            pass
+        else:
+            print("Invalid input. Please try again.")
+            TestTv.channelFunction()
         choice4=input("Would you like to adjust the volume?(Y/N): ")
         choice4= choice4.lower()
         if choice4[0]=="y":
@@ -62,10 +80,14 @@ class TestTv:
                 choice6 = choice6.lower()
                 if choice6[0] == "1":
                     tv1.volumeUp()
-                    print("tv1's channel is", tv1.getChannel(), "and volume level is", tv1.getVolume())
+                    channel = str(tv1.getChannel())
+                    volume= str(tv1.getVolume())
+                    x = ("tv1's channel is " + channel + " and volume level is " + volume)
                 elif choice6[0] == "2":
                     tv2.volumeUp()
-                    print("tv2's channel is", tv2.getChannel(), "and volume level is", tv2.getVolume())
+                    channel2 = str(tv2.getChannel())
+                    volume2= str(tv2.getVolume())
+                    x = ("tv2's channel is " + channel2 + " and volume level is " + volume2)
                 else:
                     print("Invalid input. Please try again.")
                     TestTv.channelFunction()
@@ -74,10 +96,14 @@ class TestTv:
                 choice6 = choice6.lower()
                 if choice6[0] == "1":
                     tv1.volumeDown()
-                    print("tv1's channel is", tv1.getChannel(), "and volume level is", tv1.getVolume())
+                    channel = str(tv1.getChannel())
+                    volume= str(tv1.getVolume())
+                    x = ("tv1's channel is " + channel + " and volume level is " + volume)
                 elif choice6[0] == "2":
                     tv2.volumeDown()
-                    print("tv2's channel is", tv2.getChannel(), "and volume level is", tv2.getVolume())
+                    channel2 = str(tv2.getChannel())
+                    volume2= str(tv2.getVolume())
+                    x = ("tv2's channel is " + channel2 + " and volume level is " + volume2)
                 else:
                     print("Invalid input. Please try again.")
                     TestTv.channelFunction()
@@ -85,7 +111,12 @@ class TestTv:
                 print("Invalid input. Please try again.")
                 TestTv.channelFunction()
         elif choice4[0] == "n":
-            sys.exit()
+            pass
+        else:
+            print("Invalid input. Please try again.")
+            TestTv.channelFunction()
+        text = x + y
+        TestTv.mainProgram(text)
         again = input("Would you like to try again?(Y/N): ")
         again = again.lower()
         if again[0] == "y":
@@ -94,9 +125,91 @@ class TestTv:
             num3= int(input("From 1-120, what channel would you like for tv2?:"))
             num4= int(input("From 1-7, what volume level would you like for tv2?:"))
             TestTv.main(num1,num2,num3,num4)
-            TestTv.channelFunction()
         else:
             sys.exit()
+
+
+    #Creates the main program
+    def mainProgram(newText):
+
+        #Sets the value for the width and height of the display screen
+        W, H = 800, 600
+
+        #Creates the display screen
+        display = pygame.Surface ((W, H))
+        screen = pygame.display.set_mode ((W, H))
+        pygame.display.set_caption("Results")
+        clock = pygame.time.Clock()
+
+        #RGB example values
+        black = (0,0,0)
+        white = (255,255,255)
+
+        #The rate of change in colors
+        col_spd = 1
+
+        #The color directory & its values
+        col_dir =[[-1,1,1],[-1,1,-1]]
+        def_col = [[120,120,240],[140,140,240]]
+
+        #Initialized values for functions
+        minimum = 0
+        maximum = 255
+
+        #Draws the text
+        def draw_text(text, size, col, x, y):
+            font = pygame.font.get_default_font()
+            font = pygame.font.Font(font, size)
+            text_surface = font.render(text, True, col)
+            text_rect=text_surface.get_rect()
+            text_rect.center = (x,y)
+            screen.blit(text_surface, text_rect)
+
+        #Creates the color change
+        def col_change(col,dir):
+            for i in range(1):
+                col[i] += col_spd * dir[i]
+                if col[i] >=maximum or col[i] <=minimum:
+                    dir[i] *= -1
+
+        #Combines the color change and draw text into one function
+        def array_func(col,dir,text,size,x,y):
+            for i in range(len(col)):
+                draw_text(text[i],size,col[i],x,y + i*50)
+                col_change(col[i],dir[i])
+
+        # Initialising pygame
+        pygame.init()
+
+        # Split into words
+        words = newText.split()
+
+        # Calculate number of words per line
+        num_words = len(words)
+        words_per_line = num_words // 2
+
+        # Divide into 3 lines
+        line1 = " ".join(words[:words_per_line])
+        line2 = " ".join(words[words_per_line:])
+
+        #Combines the 3 lines into one list
+        texts= [line1,line2]
+
+        #Runs the program
+        run=True
+
+        while run:
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    run = False
+
+            array_func(def_col,col_dir,texts,40, W / 2 , 200)
+
+            clock.tick()
+
+            display.blit(screen,(0,0))
+            pygame.display.update()
 
 
 tv1 = TV()
@@ -106,4 +219,3 @@ num2= int(input("From 1-7, what volume level would you like for tv1?:"))
 num3= int(input("From 1-120, what channel would you like for tv2?:"))
 num4= int(input("From 1-7, what volume level would you like for tv2?:"))
 TestTv.main(num1,num2,num3,num4)
-TestTv.channelFunction()
